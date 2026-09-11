@@ -1,6 +1,6 @@
 from sqlalchemy.orm import validates
 
-from app import db
+from extensions import db
 
 
 class User(db.Model):
