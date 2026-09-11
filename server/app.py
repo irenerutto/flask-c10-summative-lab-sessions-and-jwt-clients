@@ -1,9 +1,11 @@
 import os
 
+from dotenv import load_dotenv
 from flask import Flask, request, session
 
 from extensions import db, migrate, bcrypt
 
+load_dotenv()
 
 app = Flask(__name__)
 
