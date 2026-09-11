@@ -5,12 +5,12 @@ from models import User, Note
 
 with app.app_context():
     print("Clearing existing data...")
-
+    # Remove old seed data before creating fresh records.
     Note.query.delete()
     User.query.delete()
 
     print("Creating users...")
-
+    # Passwords are hashed before they are stored in the database.
     user1 = User(
         username="Kimani",
         password_hash=bcrypt.generate_password_hash("password123").decode("utf-8")
@@ -25,7 +25,7 @@ with app.app_context():
     db.session.commit()
 
     print("Creating notes...")
-
+    # These notes are linked to specific users using user_id.
     note1 = Note(
         title="Welcome to Notes",
         content="This is Kimani's first note.",
