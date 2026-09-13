@@ -1,0 +1,75 @@
+.notes-container {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.notes-container h2 {
+  margin-bottom: 20px;
+}
+
+.note-form {
+  margin-bottom: 30px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.note-form div {
+  margin-bottom: 15px;
+}
+
+.note-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.note-form input,
+.note-form textarea {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.note {
+  margin-bottom: 15px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.note h3 {
+  margin-top: 0;
+}
+
+.note button,
+.pagination button {
+  margin-right: 8px;
+  padding: 7px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.note button:hover,
+.pagination button:hover {
+  opacity: 0.85;
+}
+
+.pagination {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.pagination span {
+  margin-right: 12px;
+}
+
+.pagination button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}

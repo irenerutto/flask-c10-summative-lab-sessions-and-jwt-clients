@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "./NavBar";
 import Login from "../pages/Login";
+import Notes from "./Notes";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -19,7 +20,7 @@ function App() {
     <>
       <NavBar user={user} setUser={setUser} />
       <main>
-        <p>You are logged in!</p>
+        <Notes />
       </main>
     </>
   );
