@@ -5,7 +5,7 @@ import { Button } from "../styles";
 
 function NavBar({ user, setUser }) {
   function handleLogoutClick() {
-    fetch("/logout", { method: "POST" }).then((r) => {
+   fetch(`${process.env.REACT_APP_API_URL}/logout`, { method: "POST" }).then((r) => {
       if (r.ok) {
         setUser(null);
       }

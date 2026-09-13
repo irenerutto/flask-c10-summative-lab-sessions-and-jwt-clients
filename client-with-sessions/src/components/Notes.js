@@ -20,7 +20,7 @@ function Notes() {
   const [editCategory, setEditCategory] = useState("");
 
   useEffect(() => {
-    fetch(`/notes?page=${page}&per_page=5`)
+    fetch(`${process.env.REACT_APP_API_URL}/notes?page=${page}&per_page=5`)
       .then((r) => {
         if (r.ok) {
           return r.json();
@@ -43,7 +43,7 @@ function Notes() {
     e.preventDefault();
     setError("");
 
-    fetch("/notes", {
+    fetch(`${process.env.REACT_APP_API_URL}/notes`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -77,7 +77,7 @@ function Notes() {
   function handleDelete(id) {
     setError("");
 
-    fetch(`/notes/${id}`, {
+   fetch(`${process.env.REACT_APP_API_URL}/notes/${id}`, {
       method: "DELETE",
     })
       .then((r) => {
@@ -120,7 +120,7 @@ function Notes() {
     e.preventDefault();
     setError("");
 
-    fetch(`/notes/${id}`, {
+   fetch(`${process.env.REACT_APP_API_URL}/notes/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

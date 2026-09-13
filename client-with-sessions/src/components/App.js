@@ -7,7 +7,7 @@ function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch("/check_session").then((r) => {
+   fetch(`${process.env.REACT_APP_API_URL}/check_session`).then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
       }
