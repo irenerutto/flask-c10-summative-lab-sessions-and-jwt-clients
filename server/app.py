@@ -31,6 +31,9 @@ app.config["SECRET_KEY"] = os.environ.get(
     "notes-api-development-key"
 )
 
+app.config["SESSION_COOKIE_SAMESITE"] = "None"
+app.config["SESSION_COOKIE_SECURE"] = True
+
 
 db.init_app(app)
 migrate.init_app(app, db)
