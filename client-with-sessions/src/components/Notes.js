@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
+
 import "./Notes.css";
 
 function Notes() {
   const [notes, setNotes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
+
   const [viewingNoteId, setViewingNoteId] = useState(null);
   const [editingNoteId, setEditingNoteId] = useState(null);
 
@@ -20,7 +22,15 @@ function Notes() {
   const [editCategory, setEditCategory] = useState("");
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}/notes?page=${page}&per_page=5`)
+    setIsLoading(true);
+    setError("");
+
+    fetch(
+      `${process.env.REACT_APP_API_URL}/notes?page=${page}&per_page=5`,
+      {
+        credentials: "include",
+      }
+    )
       .then((r) => {
         if (r.ok) {
           return r.json();
@@ -45,6 +55,7 @@ function Notes() {
 
     fetch(`${process.env.REACT_APP_API_URL}/notes`, {
       method: "POST",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -65,6 +76,7 @@ function Notes() {
       })
       .then((newNote) => {
         setNotes((currentNotes) => [...currentNotes, newNote]);
+
         setTitle("");
         setContent("");
         setCategory("General");
@@ -77,12 +89,13 @@ function Notes() {
   function handleDelete(id) {
     setError("");
 
-   fetch(`${process.env.REACT_APP_API_URL}/notes/${id}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/notes/${id}`, {
       method: "DELETE",
+      credentials: "include",
     })
       .then((r) => {
         if (r.ok) {
-          return r.json();
+          return;
         }
 
         return r.json().then((data) => {
@@ -120,8 +133,9 @@ function Notes() {
     e.preventDefault();
     setError("");
 
-   fetch(`${process.env.REACT_APP_API_URL}/notes/${id}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/notes/${id}`, {
       method: "PATCH",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
@@ -146,6 +160,7 @@ function Notes() {
             note.id === id ? updatedNote : note
           )
         );
+
         setEditingNoteId(null);
       })
       .catch((error) => {
@@ -166,6 +181,7 @@ function Notes() {
       <form className="note-form" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="title">Title</label>
+
           <input
             type="text"
             id="title"
@@ -176,6 +192,7 @@ function Notes() {
 
         <div>
           <label htmlFor="content">Content</label>
+
           <textarea
             id="content"
             value={content}
@@ -185,6 +202,7 @@ function Notes() {
 
         <div>
           <label htmlFor="category">Category</label>
+
           <input
             type="text"
             id="category"
@@ -259,7 +277,9 @@ function Notes() {
                       />
                     </div>
 
-                    <button type="submit">Save Changes</button>
+                    <button type="submit">
+                      Save Changes
+                    </button>
 
                     <button
                       type="button"
